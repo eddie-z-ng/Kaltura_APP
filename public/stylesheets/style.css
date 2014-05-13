@@ -1,0 +1,118 @@
+body {
+  font-family: "Helvetic Neue", Helvetica, sans-serif;
+  padding-top: 100px;
+  background-color: #000; }
+
+#header {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  height: 100px;
+  width: 100%;
+  background-color: black;
+  background: -webkit-linear-gradient(bottom, #000000, #4b4b4b);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom, #000000, #4b4b4b);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom, #000000, #4b4b4b);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom, #000000, #4b4b4b);
+  /* Standard syntax (must be last) */
+  color: white; }
+  #header img {
+    width: 150px;
+    margin: 10px 50px; }
+  #header nav {
+    margin: -35px auto;
+    height: 35%;
+    width: 70%;
+    background-color: #000;
+    background: -webkit-linear-gradient(bottom, #4b4b4b, #000000);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom, #4b4b4b, #000000);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom, #4b4b4b, #000000);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom, #4b4b4b, #000000);
+    /* Standard syntax (must be last) */
+    border-radius: 25px 25px 0 0; }
+  #header nav a:link, #header nav a:visited {
+    text-decoration: none;
+    color: #ccc; }
+  #header nav a:hover {
+    text-decoration: none;
+    color: black; }
+
+.container {
+  margin: 25px auto; }
+
+#video_container {
+  display: inline-block; }
+
+#comment_list {
+  margin: -10px;
+  color: #FFF;
+  padding: 15px 45px;
+  background-color: #000;
+  border-radius: 25px;
+  height: 500px; }
+  #comment_list a {
+    color: #FFF; }
+  #comment_list #submission_header {
+    border-radius: 25px 25px 0 0; }
+  #comment_list #new_comment_container {
+    height: 400px;
+    overflow: scroll; }
+
+#submission_container, .comment {
+  background-color: #ccc;
+  color: black;
+  padding: 5px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 1px solid #888; }
+  #submission_container p, .comment p {
+    margin: -5px; }
+  #submission_container a, .comment a {
+    color: white; }
+
+#submission_container {
+  margin: 35 0 5px 0; }
+  #submission_container form input[type=submit] btn {
+    background-color: black; }
+
+.lead {
+  color: white; }
+
+.jumpVideo {
+  cursor: pointer;
+  color: #bada55; }
+
+form input[type=text], form textarea, form button {
+  margin: 5px 0; }
+
+#filler {
+  height: 50px;
+  width: 100%;
+  background: -webkit-linear-gradient(bottom, #4b4b4b, #000000);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom, #4b4b4b, #000000);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom, #4b4b4b, #000000);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom, #4b4b4b, #000000);
+  /* Standard syntax (must be last) */ }
+
+footer {
+  margin: 0 auto 0 auto; }
+  footer .navbar-nav {
+    list-style: none; }
+    footer .navbar-nav li {
+      margin: 0 10px; }
+      footer .navbar-nav li a {
+        color: white;
+        font-size: 0.75em; }
+      footer .navbar-nav li a:hover {
+        color: #ccc;
+        text-decoration: none; }

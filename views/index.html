@@ -1,0 +1,132 @@
+{% extends "layout.html"%}
+
+{% block content %}
+
+<script>
+	var currentVideoTime = 0;
+  function jumpToTime(timesec)
+  {
+  	// kdp.sendNotification('doPlay', null); // Null parameters are optional
+    window.kdp.sendNotification("doPlay");
+  	// Moves to a specific point, defined in seconds from the start of the video
+    window.kdp.sendNotification("doSeek", timesec);
+  }
+
+	function playerUpdateThrottler(limit) {
+		var counter = 0;
+		var beginTime = 0;
+		return function(data) {
+			var endTime = Math.floor(data);
+
+			// Moved to the past, remove future entries
+			if (endTime < beginTime) {
+				// console.log("Need to remove entries!");
+				for (var ind = endTime; ind <= beginTime; ind++) {
+					$('#new_comment_container').find('[data-commenttime="'+ind+'"]').remove();
+
+					if (displayedCommentsHash.hasOwnProperty(ind) && displayedCommentsHash[ind] === true) {
+						// comments at videoTime "ind" no longer displayed
+						displayedCommentsHash[ind] = false;
+					}
+				}
+			}
+
+			if (counter % limit === 0) {
+
+				for (var i = beginTime; i <= endTime; i++) {
+					var key = i + "";
+					if (displayedCommentsHash.hasOwnProperty(key)) {
+						if (displayedCommentsHash[key] === false) {
+							var timeComments = allCommentsHash[key];
+							for (var k = 0; k < timeComments.length; k++) {
+								var minutes = Math.floor(timeComments[k].videoTime/60);
+								var seconds = timeComments[k].videoTime - minutes * 60;
+								var timeString = seconds < 10 ? minutes + ":0" + seconds : minutes + ":" + seconds;
+
+								// var userNameString = timeComments[k].userName;
+								// if (!userNameString) {
+								// 	userNameString = "Anonymous";
+								// }
+								var userNameString = timeComments[k].userNameString || "(Anonymous)";
+
+								// TODO: Edit the style of the added content and better yet
+								// use swig templating!
+								var userNameHeader = $('<h6></h6>').text(userNameString);
+								var commentContent = $('<p></p>').text(timeComments[k].content);
+								var miscContent = $('<a></a>').text(timeString).addClass('jumpVideo').attr("data-time-s", timeComments[k].videoTime);
+
+								var commentEntry = $('<div class="comment" data-commenttime=' + timeComments[k].videoTime + '></div>');
+
+								commentEntry.append(userNameHeader);
+								commentEntry.append(commentContent);
+								commentEntry.append(miscContent);
+
+								$('#new_comment_container').prepend(commentEntry);
+        				// $('#new_comment_container').prepend('<div class="comment" data-commenttime="' + timeComments[k].videoTime + '">' + '<h2>'+timeComments[k].userName+'</h2>'+ '<p>' + timeComments[k].content+ '</p>'+'</div>');
+							}
+							displayedCommentsHash[key] = true;
+						}
+					}
+
+				}
+
+				beginTime = endTime;
+				counter = 0;
+			}
+			counter += 1;
+
+			window.currentVideoTime = data;
+
+		};
+	}
+
+	var playerUpdatePlayheadHandler = playerUpdateThrottler(5); // every 5 counts
+</script>
+
+<div id="video_container" class="col-lg-7">
+  <div class="row">
+    <p class="lead">Game Of Thrones</p>
+  </div>
+  <div class="row">
+	<script src="http://cdnapi.kaltura.com/p/1742331/sp/174233100/embedIframeJs/uiconf_id/24119131/partner_id/1742331"></script>
+	<div id="kaltura_player_1400024212" style="width: 600px; height: 395px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+	<span itemprop="name" content="Game of Thrones Season 4- Ice and Fire- A Foreshadowing"></span>
+	<span itemprop="description" content=""></span>
+	<span itemprop="duration" content="870"></span>
+	<span itemprop="thumbnail" content="http://cdnbakmi.kaltura.com/p/1742331/sp/174233100/thumbnail/entry_id/1_fthk65hm/version/100000/acv/121"></span>
+	<span itemprop="width" content="600"></span>
+	<span itemprop="height" content="395"></span>
+	<a href="http://corp.kaltura.com/products/video-platform-features">Video Platform</a>
+	<a href="http://corp.kaltura.com/Products/Features/Video-Management">Video Management</a> 
+	<a href="http://corp.kaltura.com/Video-Solutions">Video Solutions</a>
+	<a href="http://corp.kaltura.com/Products/Features/Video-Player">Video Player</a></div>
+</div>
+
+  <div id="comment_list" class="col-lg-5">
+    <div class="row">
+       <div id="submission_header">
+         <p class="lead pull-left">Comments</p>
+         <p class="small pull-right"><a href="#" id="show_form"> Leave a comment <span class="glyphicon glyphicon-chevron-down"></span></a>
+         </p>
+      </div>
+    </div>
+    <div class="row">
+      <div id="submission_container" class="col-lg-12 form-group">
+        <form action="/comments/add" method="post" id="commentForm">
+          <input type="text" class="form-control" name="username" placeholder="Enter Your Name">
+          <textarea class="form-control" rows="3" placeholder="Comment" name="content"></textarea>
+          <div class='form-group'>
+            <p id="time_on_form" class='pull-left'></p>
+            <input type='submit' class='btn btn-primary pull-right'>
+          </div>
+        </form>
+      </div>
+    </div>
+      <div class="row">
+        <div id="new_comment_container">
+        </div>
+      </div>
+  </div>
+
+{% endblock %}
+
