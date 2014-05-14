@@ -59,7 +59,7 @@
 								var commentEntry = $('<div class="comment" data-commenttime=' + timeComments[k].videoTime + '></div>');
 
 								commentEntry.append(commentContent).append("<hr>");
-                commentEntry.append(userNameHeader);
+                // commentEntry.append(userNameHeader);
 								commentEntry.append(miscContent).append(clear);
 
 								$('#new_comment_container').prepend(commentEntry);
@@ -116,7 +116,7 @@
       <div class="row">
         <div id="submission_container" class="col-lg-12 form-group">
           <form action="/comments/add" method="post" id="commentForm">
-            <input type="text" class="form-control" name="username" placeholder="Enter Your Name">
+{#             <input type="text" class="form-control" name="username" placeholder="Enter Your Name"> #}
             <textarea class="form-control" rows="1" placeholder="Comment" name="content"></textarea>
             <div class='form-group'>
               <p id="time_on_form" class='pull-left'></p>
