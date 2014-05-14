@@ -24,7 +24,7 @@ $(document).ready(function(){
   kWidget.embed({
     "targetId": "kaltura_player_1400024212",
     "wid": "_1742331",
-    "uiconf_id": 24119131,
+    "uiconf_id": 24203511,
     "flashvars": {},
     "cache_st": 1400024212,
     "entry_id": "1_fthk65hm",

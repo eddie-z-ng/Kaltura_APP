@@ -77,10 +77,8 @@ body {
   #submission_container a, .comment a {
     color: white; }
 
-#submission_container {
-  margin: 35 0 5px 0; }
-  #submission_container form input[type=submit] btn {
-    background-color: black; }
+#submission_container form input[type=submit] btn {
+  background-color: black; }
 
 .lead {
   color: white; }
