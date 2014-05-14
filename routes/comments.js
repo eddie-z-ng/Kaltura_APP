@@ -59,6 +59,8 @@ router.get('/:player_id', function(req, res) {
       }
       var videoId = video._id;
       var query = Comment.find({ videoId: videoId});
+
+      console.log(videoId);
       query.where('videoTime').exec(function(err, comments) {
 
         // if (comments.length) {

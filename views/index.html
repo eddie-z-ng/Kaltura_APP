@@ -4,12 +4,51 @@
 
 <script>
 	var currentVideoTime = 0;
+
+	function createCommentDOM(commentObj) {
+		var minutes = Math.floor(commentObj.videoTime/60);
+		var seconds = commentObj.videoTime - minutes * 60;
+		var timeString = seconds < 10 ? minutes + ":0" + seconds : minutes + ":" + seconds;
+		var userNameString = commentObj.userNameString || "(Anonymous)";
+
+  // TODO: Edit the style of the added content and better yet
+    // use swig templating!
+    var userNameHeader = $('<p></p>').text(userNameString).addClass("pull-left comment_title");
+    var commentContent = $('<p></p>').text(commentObj.content).addClass("comment_content");
+    var miscContent = $('<a></a>').text(timeString).addClass('jumpVideo pull-right').attr("data-time-s", commentObj.videoTime);
+    var clear = $("<p class='clear'></p>");
+    var commentEntry = $('<div class="comment" data-commenttime=' + commentObj.videoTime + '></div>');
+
+    commentEntry.append(commentContent).append("<hr>");
+    commentEntry.append(userNameHeader);
+    commentEntry.append(miscContent).append(clear);
+
+		return commentEntry;
+	}
+
   function jumpToTime(timesec)
   {
   	// kdp.sendNotification('doPlay', null); // Null parameters are optional
     window.kdp.sendNotification("doPlay");
   	// Moves to a specific point, defined in seconds from the start of the video
     window.kdp.sendNotification("doSeek", timesec);
+  }
+
+  function playerDurationHandler(data) {
+  	console.log("Duration!", data.newValue);
+  	// if (allComments.length) {
+  	// 	window.allCommentsMap = [];
+  	// 	for (var i = 0; i < data.newValue; i++) {
+  			
+  	// 		if (allCommentsHash.hasOwnProperty(i)) {
+  	// 			window.allCommentsMap[i] = allCommentsHash[i];
+  	// 		}
+  	// 		else {
+  	// 			window.allCommentsMap[i] = 0;
+  	// 		}
+  	// 	}
+  	// }
+  	// console.log("MAP is now", allCommentsMap);
   }
 
 	function playerUpdateThrottler(limit) {
@@ -32,43 +71,34 @@
 			}
 
 			if (counter % limit === 0) {
-
 				for (var i = beginTime; i <= endTime; i++) {
 					var key = i + "";
 					if (displayedCommentsHash.hasOwnProperty(key)) {
 						if (displayedCommentsHash[key] === false) {
 							var timeComments = allCommentsHash[key];
 							for (var k = 0; k < timeComments.length; k++) {
-								var minutes = Math.floor(timeComments[k].videoTime/60);
-								var seconds = timeComments[k].videoTime - minutes * 60;
-								var timeString = seconds < 10 ? minutes + ":0" + seconds : minutes + ":" + seconds;
+
+								// var minutes = Math.floor(timeComments[k].videoTime/60);
+								// var seconds = timeComments[k].videoTime - minutes * 60;
+								// var timeString = seconds < 10 ? minutes + ":0" + seconds : minutes + ":" + seconds;
 
 								// var userNameString = timeComments[k].userName;
 								// if (!userNameString) {
 								// 	userNameString = "Anonymous";
 								// }
-								var userNameString = timeComments[k].userNameString || "(Anonymous)";
+								// var userNameString = timeComments[k].userNameString || "(Anonymous)";
 
-								// TODO: Edit the style of the added content and better yet
-								// use swig templating!
-								var userNameHeader = $('<p></p>').text(userNameString).addClass("pull-left comment_title");
-								var commentContent = $('<p></p>').text(timeComments[k].content).addClass("comment_content");
-								var miscContent = $('<a></a>').text(timeString).addClass('jumpVideo pull-right').attr("data-time-s", timeComments[k].videoTime);
-                var clear = $("<p class='clear'></p>")
+							
 
-								var commentEntry = $('<div class="comment" data-commenttime=' + timeComments[k].videoTime + '></div>');
+								//$('#new_comment_container').prepend(commentEntry);
 
-								commentEntry.append(commentContent).append("<hr>");
-                commentEntry.append(userNameHeader);
-								commentEntry.append(miscContent).append(clear);
+								var commentEntry = createCommentDOM(timeComments[k]);
+        				$('#new_comment_container').prepend(commentEntry);
 
-								$('#new_comment_container').prepend(commentEntry);
-        				// $('#new_comment_container').prepend('<div class="comment" data-commenttime="' + timeComments[k].videoTime + '">' + '<h2>'+timeComments[k].userName+'</h2>'+ '<p>' + timeComments[k].content+ '</p>'+'</div>');
 							}
 							displayedCommentsHash[key] = true;
 						}
 					}
-
 				}
 
 				beginTime = endTime;
@@ -80,7 +110,6 @@
 
 		};
 	}
-
 	var playerUpdatePlayheadHandler = playerUpdateThrottler(5); // every 5 counts
 </script>
 <div id="comment_vid_container">
