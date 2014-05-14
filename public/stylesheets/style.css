@@ -47,6 +47,7 @@ body {
 .container {
   margin: 25px auto; }
 
+
 #video_container {
   display: inline-block; }
 
@@ -56,7 +57,9 @@ body {
   padding: 15px 45px;
   background-color: #000;
   border-radius: 25px;
-  height: 500px; }
+  height: 600px;
+  overflow-y: scroll;
+  overflow-x: hidden; }
   #comment_list a {
     color: #FFF; }
   #comment_list #submission_header {
@@ -64,11 +67,24 @@ body {
   #comment_list #new_comment_container {
     height: 400px;
     overflow: scroll; }
+  #comment_list ::-webkit-scrollbar {
+    width: 12px; }
+  #comment_list ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px; }
+  #comment_list ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(84, 153, 225, 0.9);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5); }
+  #comment_list ::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(84, 153, 225, 0.9); }
 
 #submission_container, .comment {
   background-color: #ccc;
   color: black;
-  padding: 5px;
+  padding: 10px;
   margin: 10px 0;
   box-sizing: border-box;
   border: 1px solid #888; }
@@ -77,8 +93,25 @@ body {
   #submission_container a, .comment a {
     color: white; }
 
-#submission_container form input[type=submit] btn {
-  background-color: black; }
+.comment {
+  border: 3px solid #FFF; }
+
+.comment_content {
+  padding: 7px 0 0 10px; }
+
+.comment_title {
+  font-size: 0.75em;
+  padding: -5px 0; }
+
+.clear {
+  clear: both; }
+
+#submission_container {
+  margin: 35 0 5px 0; }
+  #submission_container form input[type=submit] btn {
+    background-color: black; }
+  #submission_container form input[type=text], #submission_container form textarea, #submission_container form button {
+    margin: 5px 0; }
 
 .lead {
   color: white; }
@@ -87,11 +120,8 @@ body {
   cursor: pointer;
   color: #bada55; }
 
-form input[type=text], form textarea, form button {
-  margin: 5px 0; }
-
 #filler {
-  height: 50px;
+  height: 25px;
   width: 100%;
   background: -webkit-linear-gradient(bottom, #4b4b4b, #000000);
   /* For Safari 5.1 to 6.0 */
@@ -103,7 +133,7 @@ form input[type=text], form textarea, form button {
   /* Standard syntax (must be last) */ }
 
 footer {
-  margin: 0 auto 0 auto; }
+  margin: 0; }
   footer .navbar-nav {
     list-style: none; }
     footer .navbar-nav li {

@@ -51,15 +51,16 @@
 
 								// TODO: Edit the style of the added content and better yet
 								// use swig templating!
-								var userNameHeader = $('<h6></h6>').text(userNameString);
-								var commentContent = $('<p></p>').text(timeComments[k].content);
-								var miscContent = $('<a></a>').text(timeString).addClass('jumpVideo').attr("data-time-s", timeComments[k].videoTime);
+								var userNameHeader = $('<p></p>').text(userNameString).addClass("pull-left comment_title");
+								var commentContent = $('<p></p>').text(timeComments[k].content).addClass("comment_content");
+								var miscContent = $('<a></a>').text(timeString).addClass('jumpVideo pull-right').attr("data-time-s", timeComments[k].videoTime);
+                var clear = $("<p class='clear'></p>")
 
 								var commentEntry = $('<div class="comment" data-commenttime=' + timeComments[k].videoTime + '></div>');
 
-								commentEntry.append(userNameHeader);
-								commentEntry.append(commentContent);
-								commentEntry.append(miscContent);
+								commentEntry.append(commentContent).append("<hr>");
+                commentEntry.append(userNameHeader);
+								commentEntry.append(miscContent).append(clear);
 
 								$('#new_comment_container').prepend(commentEntry);
         				// $('#new_comment_container').prepend('<div class="comment" data-commenttime="' + timeComments[k].videoTime + '">' + '<h2>'+timeComments[k].userName+'</h2>'+ '<p>' + timeComments[k].content+ '</p>'+'</div>');
@@ -82,52 +83,55 @@
 
 	var playerUpdatePlayheadHandler = playerUpdateThrottler(5); // every 5 counts
 </script>
-
-<div id="video_container" class="col-lg-8">
+<div id="comment_vid_container">
   <div class="row">
-    <p class="lead">Game Of Thrones</p>
-  </div>
-  <div class="row">
-	<script src="http://cdnapi.kaltura.com/p/1742331/sp/174233100/embedIframeJs/uiconf_id/24203511/partner_id/1742331"></script>
-	<div id="kaltura_player_1400024212" style="width: 600px; height: 395px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
-	<span itemprop="name" content="Game of Thrones Season 4- Ice and Fire- A Foreshadowing"></span>
-	<span itemprop="description" content=""></span>
-	<span itemprop="duration" content="870"></span>
-	<span itemprop="thumbnail" content="http://cdnbakmi.kaltura.com/p/1742331/sp/174233100/thumbnail/entry_id/1_fthk65hm/version/100000/acv/121"></span>
-	<span itemprop="width" content="600"></span>
-	<span itemprop="height" content="395"></span>
-	<a href="http://corp.kaltura.com/products/video-platform-features">Video Platform</a>
-	<a href="http://corp.kaltura.com/Products/Features/Video-Management">Video Management</a>
-	<a href="http://corp.kaltura.com/Video-Solutions">Video Solutions</a>
-	<a href="http://corp.kaltura.com/Products/Features/Video-Player">Video Player</a></div>
-</div>
-<div id="row">
-  <div id="comment_list" class="col-lg-3">
-    <div class="row">
-       <div id="submission_header">
-         <p class="lead pull-left">Comments</p>
-         <p class="small pull-right"><a href="#" id="show_form"> Leave a comment <span class="glyphicon glyphicon-chevron-down"></span></a>
-         </p>
-      </div>
-    </div>
-  </div>
-    <div class="row">
-      <div id="submission_container" class="col-lg-12 form-group">
-        <form action="/comments/add" method="post" id="commentForm">
-          <input type="text" class="form-control" name="username" placeholder="Enter Your Name">
-          <textarea class="form-control" rows="3" placeholder="Comment" name="content"></textarea>
-          <div class='form-group'>
-            <p id="time_on_form" class='pull-left'></p>
-            <input type='submit' class='btn btn-primary pull-right'>
-          </div>
-        </form>
-      </div>
-    </div>
+    <div id="video_container" class="col-lg-8">
       <div class="row">
-        <div id="new_comment_container">
+        <p class="lead">Game Of Thrones</p>
+      </div>
+      <div class="row">
+    	<script src="http://cdnapi.kaltura.com/p/1742331/sp/174233100/embedIframeJs/uiconf_id/24203511/partner_id/1742331"></script>
+    	<div id="kaltura_player_1400024212" style="width: 600px; height: 395px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+    	<span itemprop="name" content="Game of Thrones Season 4- Ice and Fire- A Foreshadowing"></span>
+    	<span itemprop="description" content=""></span>
+    	<span itemprop="duration" content="870"></span>
+    	<span itemprop="thumbnail" content="http://cdnbakmi.kaltura.com/p/1742331/sp/174233100/thumbnail/entry_id/1_fthk65hm/version/100000/acv/121"></span>
+    	<span itemprop="width" content="600"></span>
+    	<span itemprop="height" content="395"></span>
+    	<a href="http://corp.kaltura.com/products/video-platform-features">Video Platform</a>
+    	<a href="http://corp.kaltura.com/Products/Features/Video-Management">Video Management</a>
+    	<a href="http://corp.kaltura.com/Video-Solutions">Video Solutions</a>
+    	<a href="http://corp.kaltura.com/Products/Features/Video-Player">Video Player</a></div>
+    </div>
+  </div>
+  <div id="row">
+    <div id="comment_list" class="col-lg-4">
+      <div class="row">
+         <div id="submission_header">
+           <p class="lead pull-left">Comments</p>
+           <p class="small pull-right"><a href="#" id="show_form"> Leave a comment <span class="glyphicon glyphicon-chevron-down"></span></a>
+           </p>
         </div>
       </div>
+      <div class="row">
+        <div id="submission_container" class="col-lg-12 form-group">
+          <form action="/comments/add" method="post" id="commentForm">
+            <input type="text" class="form-control" name="username" placeholder="Enter Your Name">
+            <textarea class="form-control" rows="1" placeholder="Comment" name="content"></textarea>
+            <div class='form-group'>
+              <p id="time_on_form" class='pull-left'></p>
+              <input type='submit' class='btn btn-primary pull-right'>
+            </div>
+          </form>
+        </div>
+      </div>
+        <div class="row">
+          <div id="new_comment_container">
+          </div>
+        </div>
+     </div>
+    </div>
   </div>
-
+</div>
 {% endblock %}
 
