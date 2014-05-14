@@ -56,6 +56,7 @@ $(document).ready(function(){
         },
         success: function(response) {
           window.kdp.addJsListener("playerUpdatePlayhead", "playerUpdatePlayheadHandler");
+          window.kdp.addJsListener("durationChange", "playerDurationHandler");
 
           allComments = response;
           console.log("All comments:", allComments);
