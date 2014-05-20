@@ -9,8 +9,8 @@
 		var minutes = Math.floor(commentObj.videoTime/60);
 		var seconds = commentObj.videoTime - minutes * 60;
 		var timeString = seconds < 10 ? minutes + ":0" + seconds : minutes + ":" + seconds;
-		var userNameString = commentObj.userNameString || "(Anonymous)";
-
+		var userNameString = commentObj.userName || "(Anonymous)";
+    console.log('username: ', userNameString)
   // TODO: Edit the style of the added content and better yet
     // use swig templating!
     var userNameHeader = $('<p></p>').text(userNameString).addClass("pull-left comment_title");

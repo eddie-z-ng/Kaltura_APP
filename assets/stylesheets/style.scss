@@ -1,7 +1,7 @@
 body{
-  font-family: "Helvetic Neue", Helvetica, sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Arial, Helvetica, sans-serif;
   padding-top: 100px;
-  background-color:#000;
+  background-color:#FFF;
 }
 
 #header{
@@ -12,10 +12,10 @@ body{
   height:100px;
   width:100%;
   background-color:black;
-    background: -webkit-linear-gradient(bottom, rgba(0,0,0,1), rgba(75,75,75,1)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom, rgba(0,0,0,1), rgba(75,75,75,1)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom, rgba(0,0,0,1), rgba(75,75,75,1)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom, rgba(0,0,0,1), rgba(75,75,75,1)); /* Standard syntax (must be last) */
+    // background: -webkit-linear-gradient(bottom, rgba(0,0,0,1), rgba(75,75,75,1)); /* For Safari 5.1 to 6.0 */
+    // background: -o-linear-gradient(bottom, rgba(0,0,0,1), rgba(75,75,75,1)); /* For Opera 11.1 to 12.0 */
+    // background: -moz-linear-gradient(bottom, rgba(0,0,0,1), rgba(75,75,75,1)); /* For Firefox 3.6 to 15 */
+    // background: linear-gradient(to bottom, rgba(0,0,0,1), rgba(75,75,75,1)); /* Standard syntax (must be last) */
     color:white;
 
     img{
@@ -36,12 +36,12 @@ body{
   }
   nav a:link, nav a:visited{
   text-decoration: none;
-  color:#ccc;
+  color:#72c331;
 
   }
   nav a:hover{
     text-decoration:none;
-    color:black;
+    color:#72c331;
   }
 
 }
@@ -60,15 +60,15 @@ body{
 
 #comment_list{
   margin:-10px;
-  color:#FFF;
+  color:#8b867c;
   padding: 15px 45px;
-  background-color: #000;
+  background-color: #FFF;
   border-radius:25px;
   height: 600px;
   overflow-y: scroll;
   overflow-x:hidden;
    a{
-    color:#FFF;
+    color:#72c331;
   }
   #submission_header{
     border-radius: 25px 25px 0 0;
@@ -103,7 +103,7 @@ body{
 .comment
 {
   background-color:#ccc;
-  color:black;
+  color:#000;
   padding:10px;
   margin:10px 0;
   box-sizing:border-box;
@@ -112,7 +112,7 @@ body{
     margin:-5px;
   }
   a{
-    color:white;
+    color:#72c331;
   }
 
 }
@@ -133,7 +133,7 @@ body{
   margin:35 0 5px 0;
   form input[type=submit]{
     btn {
-      background-color:black;
+      background-color:#FFF;
     }
   }
   form input[type=text], form textarea, form button{
@@ -142,13 +142,21 @@ body{
 }
 
 .lead{
-  color:white;
+  color:#8b867c;
 }
 .jumpVideo {
   cursor: pointer;
-  color: #bada55;
+  color: #72c331;
 }
 
+.btn-primary {
+  background-color: #72c331;
+  border-color: #72c331;
+}
+  .btn-primary:hover, .btn-primary:active{
+    background-color: #4d8421;
+    border-color: #4d8421;
+  }
 
 #filler{
   height:25px;
