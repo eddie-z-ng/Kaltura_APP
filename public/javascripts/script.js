@@ -1,3 +1,5 @@
+'use strict';
+
 // List of all the commments
 var allComments = [];
 
@@ -9,8 +11,54 @@ var allCommentsHash = {};
 // key = "videoTime", value = whether displayed or not (true/false)
 var displayedCommentsHash = {};
 
+function createCommentDOM(commentObj) {
+  var minutes = Math.floor(commentObj.videoTime/60);
+  var seconds = commentObj.videoTime - minutes * 60;
+  var timeString = seconds < 10 ? minutes + ":0" + seconds : minutes + ":" + seconds;
+  var userNameString = commentObj.userName || "(Anonymous)";
 
-$(document).ready(function(){
+  // TODO: Edit the style of the added content and better yet
+  // use swig templating!
+  var userNameHeader = $('<p></p>').text(userNameString).addClass("pull-left comment_title");
+  var commentContent = $('<p></p>').text(commentObj.content).addClass("comment_content");
+  var miscContent = $('<a></a>').text(timeString).addClass('jumpVideo pull-right').attr("data-time-s", commentObj.videoTime);
+  var clear = $("<p class='clear'></p>");
+  var commentEntry = $('<div class="comment" data-commenttime=' + commentObj.videoTime + '></div>');
+
+  commentEntry.append(commentContent).append("<hr>");
+  commentEntry.append(userNameHeader);
+  commentEntry.append(miscContent).append(clear);
+
+  return commentEntry;
+}
+
+function hashComments(comments) {
+  var commentsHash = {};
+  comments.forEach(function(comment) {
+    var key = comment.videoTime;
+    if (!commentsHash.hasOwnProperty(key)) {
+      commentsHash[key] = [];
+      window.displayedCommentsHash[key] = false;
+    }
+    commentsHash[key].push(comment);
+  });
+  return commentsHash;
+}
+
+function createAndHideCommentDOMs(commentsHash) {
+  var keys = Object.keys(commentsHash);
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i];
+    var timeComments = commentsHash[key];
+    for (var k = 0; k < timeComments.length; k++) {
+      var commentEntry = createCommentDOM(timeComments[k]).hide();
+      $('#new_comment_container').prepend(commentEntry);
+    }
+  }
+}
+
+
+$(document).ready(function() {
   var kdpPlayerId;
   $('#submission_container').hide();
   $('#show_form').click(function(event){
@@ -58,21 +106,14 @@ $(document).ready(function(){
           window.kdp.addJsListener("playerUpdatePlayhead", "playerUpdatePlayheadHandler");
           window.kdp.addJsListener("durationChange", "playerDurationHandler");
 
-          allComments = response;
-          console.log("All comments:", allComments);
+          window.allComments = response;
+          window.allCommentsHash = hashComments(window.allComments);
 
-          allComments.forEach(function(comment) {
-            var key = comment.videoTime;
+          console.log("All comments:", window.allComments, window.allCommentsHash);
 
-            if (!allCommentsHash.hasOwnProperty(key)) {
-              allCommentsHash[key] = [];
-              displayedCommentsHash[key] = false;
-            }
-            allCommentsHash[key].push(comment);
-          });
+          createAndHideCommentDOMs(window.allCommentsHash);
         }
       });
-
     }
   });
 

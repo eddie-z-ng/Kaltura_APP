@@ -41,50 +41,13 @@
       </ul>
     </footer> -->
 
+  <script type="text/javascript" src="/javascripts/comments.js"></script>
+
   <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="/javascripts/script.js"></script>
 
   <script src="/socket.io/socket.io.js"></script>
-  <script>
-    var socket = io.connect(); // TIP: .connect with no args does auto-discovery
-
-    socket.on('new_comment', function (new_comment) {
-      allComments.push(new_comment);
-
-      if (new_comment.videoTime < currentVideoTime) {
-      	console.log(new_comment);
-      	// Comment in the past -- put into list
-        var commentEntry = createCommentDOM(new_comment);
-
-        var newKey = new_comment.videoTime;
-        if (allCommentsHash.hasOwnProperty(newKey)) { // this videoTime exists
-          $('#new_comment_container').find('[data-commenttime="'+newKey+'"]').before(commentEntry);
-        }
-        else {
-          var keys = Object.keys(allCommentsHash);
-          var myKey = 0;
-          for (var i = 0; i < keys.length; i++) {
-            var vidTime = parseInt(keys[i]);
-            if (newKey < vidTime) {
-              break;
-            }
-            else {
-              myKey = vidTime;
-            }
-          }
-
-          if(myKey === 0) {
-            console.log("APPENDING", commentEntry);
-            $('#new_comment_container').append(commentEntry);
-          }
-          else {
-            console.log("BEFORE", commentEntry);
-            $('#new_comment_container').find('[data-commenttime="'+myKey+'"]').before(commentEntry);
-          }
-        }
-      }
-    });
-  </script>
+  <script type="text/javascript" src="/javascripts/socketComment.js"></script>
 
 </body>
 </html>
