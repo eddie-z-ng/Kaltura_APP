@@ -1,7 +1,7 @@
 body {
-  font-family: 'Lucida Sans Unicode', 'Lucida Grande', Arial, Helvetica, sans-serif;
+  font-family: "Helvetic Neue", Helvetica, sans-serif;
   padding-top: 100px;
-  background-color: #FFF; }
+  background-color: #000; }
 
 #header {
   position: fixed;
@@ -10,18 +10,21 @@ body {
   left: 0;
   height: 100px;
   width: 100%;
-  padding-top:20px;
   background-color: black;
-/*  background: -webkit-linear-gradient(bottom, #000000, #4b4b4b);
+  background: -webkit-linear-gradient(bottom, #000000, #4b4b4b);
+  /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(bottom, #000000, #4b4b4b);
+  /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(bottom, #000000, #4b4b4b);
-  background: linear-gradient(to bottom, #000000, #4b4b4b);*/
-  color: #000; }
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom, #000000, #4b4b4b);
+  /* Standard syntax (must be last) */
+  color: white; }
   #header img {
     width: 150px;
     margin: 10px 50px; }
   #header nav {
-    margin: -5px auto;
+    margin: -35px auto;
     height: 35%;
     width: 70%;
     background-color: #000;
@@ -36,10 +39,10 @@ body {
     border-radius: 25px 25px 0 0; }
   #header nav a:link, #header nav a:visited {
     text-decoration: none;
-    color: #72aa49; }
+    color: #ccc; }
   #header nav a:hover {
     text-decoration: none;
-    color: #72aa49; }
+    color: black; }
 
 .container {
   margin: 25px auto; }
@@ -50,15 +53,15 @@ body {
 
 #comment_list {
   margin: -10px;
-  color: #000;
+  color: #FFF;
   padding: 15px 45px;
-  background-color: #FFF;
+  background-color: #000;
   border-radius: 25px;
   height: 600px;
   overflow-y: scroll;
   overflow-x: hidden; }
   #comment_list a {
-    color: #72aa49; }
+    color: #FFF; }
   #comment_list #submission_header {
     border-radius: 25px 25px 0 0; }
   #comment_list #new_comment_container {
@@ -88,10 +91,10 @@ body {
   #submission_container p, .comment p {
     margin: -5px; }
   #submission_container a, .comment a {
-    color: #72aa49; }
+    color: white; }
 
 .comment {
-  box-shadow: 5px 5px 10px #ccc; }
+  border: 3px solid #FFF; }
 
 .comment_content {
   padding: 7px 0 0 10px; }
@@ -111,20 +114,11 @@ body {
     margin: 5px 0; }
 
 .lead {
-  color: #000; }
+  color: white; }
 
 .jumpVideo {
   cursor: pointer;
-  color: #72aa49; }
-
-.btn{
-  background-color:#72aa49;
-  border-color:#72aa49; }
-  .btn:hover {
-    background-color:#FFF;
-    color: #72aa49;
-    border-color:#72aa49;
-  }
+  color: #bada55; }
 
 #filler {
   height: 25px;
@@ -145,8 +139,8 @@ footer {
     footer .navbar-nav li {
       margin: 0 10px; }
       footer .navbar-nav li a {
-        color: #FFF;
+        color: white;
         font-size: 0.75em; }
       footer .navbar-nav li a:hover {
-        color: #72aa49;
+        color: #ccc;
         text-decoration: none; }
