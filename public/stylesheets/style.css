@@ -1,5 +1,9 @@
 body {
+<<<<<<< HEAD
   font-family: "Helvetic Neue", Helvetica, sans-serif;
+=======
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Arial, Helvetica, sans-serif;
+>>>>>>> 83d2e0d114d380a752144980e8c3de960e8ce4e6
   padding-top: 100px;
   background-color: #000; }
 
@@ -11,6 +15,7 @@ body {
   height: 100px;
   width: 100%;
   background-color: black;
+<<<<<<< HEAD
   background: -webkit-linear-gradient(bottom, #000000, #4b4b4b);
   /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(bottom, #000000, #4b4b4b);
@@ -19,6 +24,8 @@ body {
   /* For Firefox 3.6 to 15 */
   background: linear-gradient(to bottom, #000000, #4b4b4b);
   /* Standard syntax (must be last) */
+=======
+>>>>>>> 83d2e0d114d380a752144980e8c3de960e8ce4e6
   color: white; }
   #header img {
     width: 150px;
@@ -39,10 +46,17 @@ body {
     border-radius: 25px 25px 0 0; }
   #header nav a:link, #header nav a:visited {
     text-decoration: none;
+<<<<<<< HEAD
     color: #ccc; }
   #header nav a:hover {
     text-decoration: none;
     color: black; }
+=======
+    color: #72c331; }
+  #header nav a:hover {
+    text-decoration: none;
+    color: #72c331; }
+>>>>>>> 83d2e0d114d380a752144980e8c3de960e8ce4e6
 
 .container {
   margin: 25px auto; }
@@ -53,7 +67,11 @@ body {
 
 #comment_list {
   margin: -10px;
+<<<<<<< HEAD
   color: #FFF;
+=======
+  color: #8b867c;
+>>>>>>> 83d2e0d114d380a752144980e8c3de960e8ce4e6
   padding: 15px 45px;
   background-color: #000;
   border-radius: 25px;
@@ -61,7 +79,11 @@ body {
   overflow-y: scroll;
   overflow-x: hidden; }
   #comment_list a {
+<<<<<<< HEAD
     color: #FFF; }
+=======
+    color: #72c331; }
+>>>>>>> 83d2e0d114d380a752144980e8c3de960e8ce4e6
   #comment_list #submission_header {
     border-radius: 25px 25px 0 0; }
   #comment_list #new_comment_container {
@@ -83,7 +105,7 @@ body {
 
 #submission_container, .comment {
   background-color: #ccc;
-  color: black;
+  color: #000;
   padding: 10px;
   margin: 10px 0;
   box-sizing: border-box;
@@ -91,7 +113,11 @@ body {
   #submission_container p, .comment p {
     margin: -5px; }
   #submission_container a, .comment a {
+<<<<<<< HEAD
     color: white; }
+=======
+    color: #72c331; }
+>>>>>>> 83d2e0d114d380a752144980e8c3de960e8ce4e6
 
 .comment {
   border: 3px solid #FFF; }
@@ -109,16 +135,32 @@ body {
 #submission_container {
   margin: 35 0 5px 0; }
   #submission_container form input[type=submit] btn {
-    background-color: black; }
+    background-color: #FFF; }
   #submission_container form input[type=text], #submission_container form textarea, #submission_container form button {
     margin: 5px 0; }
 
 .lead {
+<<<<<<< HEAD
   color: white; }
 
 .jumpVideo {
   cursor: pointer;
   color: #bada55; }
+=======
+  color: #8b867c; }
+
+.jumpVideo {
+  cursor: pointer;
+  color: #72c331; }
+
+.btn-primary {
+  background-color: #72c331;
+  border-color: #72c331; }
+
+.btn-primary:hover, .btn-primary:active {
+  background-color: #4d8421;
+  border-color: #4d8421; }
+>>>>>>> 83d2e0d114d380a752144980e8c3de960e8ce4e6
 
 #filler {
   height: 25px;
