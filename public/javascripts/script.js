@@ -22,12 +22,12 @@ $(document).ready(function(){
   }
 
   kWidget.embed({
-    "targetId": "kaltura_player_1400024212",
-    "wid": "_1742331",
-    "uiconf_id": 24203511,
-    "flashvars": {},
-    "cache_st": 1400024212,
-    "entry_id": "1_fthk65hm",
+      "targetId": "kaltura_player_1400024212",
+      "wid": "_1742331",
+      "uiconf_id": 24203511,
+      "flashvars": {},
+      "cache_st": 1400597984,
+      "entry_id": "1_cx4pvw69",
     readyCallback: function( playerId ){
       console.log( 'Player:' + playerId + ' is ready ');
       window.kdp = document.getElementById(playerId);
